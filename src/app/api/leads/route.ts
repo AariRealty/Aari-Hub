@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { sendNewLeadEmail } from "@/lib/email";
 import { leadSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
@@ -37,6 +38,19 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
+
+  // Fire-and-forget email notification. The lead is already saved, so we
+  // don't want a Resend hiccup to fail the form submission.
+  await sendNewLeadEmail({
+    first_name: parsed.data.first_name,
+    last_name: parsed.data.last_name,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    instagram_handle: parsed.data.instagram,
+    contact_method: parsed.data.contact_method,
+    intent: parsed.data.intent ?? null,
+    message: parsed.data.message,
+  });
 
   return NextResponse.json({ ok: true }, { status: 201 });
 }
