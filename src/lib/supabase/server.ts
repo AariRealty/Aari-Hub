@@ -1,24 +1,37 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { cookies } from "next/headers";
+
+type CookieSetParam = { name: string; value: string; options: CookieOptions };
 
 /**
- * Server-only Supabase client using the service role key.
- * NEVER import this from a client component — the service role key bypasses
- * Row Level Security and must never reach the browser.
+ * Supabase client for Server Components, Server Actions, and Route Handlers.
+ * Wires up Next.js cookies so the user's auth session is read on every request.
+ *
+ * `cookies()` returns a Promise in Next.js 15, so this function must be awaited.
  */
-export function createSupabaseServerClient(): SupabaseClient {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+export async function createSupabaseServerClient() {
+  const cookieStore = await cookies();
 
-  if (!url || !serviceRoleKey) {
-    throw new Error(
-      "Missing Supabase environment variables. See .env.local.example.",
-    );
-  }
-
-  return createClient(url, serviceRoleKey, {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false,
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet: CookieSetParam[]) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options),
+            );
+          } catch {
+            // Setting cookies from a Server Component throws — that's fine
+            // because the middleware will refresh the session on the next
+            // request.
+          }
+        },
+      },
     },
-  });
+  );
 }
