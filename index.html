@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect With Me — Aari Realty</title>
+  <meta name="description" content="Connect with Aari Realty. Book a call, message me, or follow along on social." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <main class="page">
+    <!-- Cover -->
+    <div class="cover" aria-hidden="true"></div>
+
+    <!-- Profile -->
+    <section class="profile">
+      <div class="avatar" aria-hidden="true">A</div>
+      <h1 class="name">Connect With Me</h1>
+      <p class="tagline">
+        Helping you find, buy, and sell homes with confidence.
+      </p>
+      <p class="bio">
+        I'm a real estate advisor with Aari Realty. Whether you're a first-time
+        buyer, a seasoned investor, or just curious about the market — I'd love
+        to chat. Pick whichever way works best for you below.
+      </p>
+    </section>
+
+    <!-- Primary actions -->
+    <section class="actions" aria-label="Primary actions">
+      <a class="action action--primary" href="#book">
+        <span class="action__icon" aria-hidden="true">📅</span>
+        <span class="action__text">
+          <span class="action__title">Book a Call</span>
+          <span class="action__subtitle">Free 15-minute intro</span>
+        </span>
+        <span class="action__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="action" href="mailto:hello@aarirealty.com">
+        <span class="action__icon" aria-hidden="true">✉️</span>
+        <span class="action__text">
+          <span class="action__title">Send an Email</span>
+          <span class="action__subtitle">hello@aarirealty.com</span>
+        </span>
+        <span class="action__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="action" href="sms:+10000000000">
+        <span class="action__icon" aria-hidden="true">💬</span>
+        <span class="action__text">
+          <span class="action__title">Text Me</span>
+          <span class="action__subtitle">Fastest way to reach me</span>
+        </span>
+        <span class="action__arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <!-- Social / follow -->
+    <section class="section" aria-labelledby="follow-heading">
+      <h2 id="follow-heading" class="section__heading">Follow Along</h2>
+      <ul class="links">
+        <li>
+          <a class="link" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <span class="link__icon" aria-hidden="true">📸</span>
+            <span class="link__label">Instagram</span>
+            <span class="link__hint">@aarirealty</span>
+          </a>
+        </li>
+        <li>
+          <a class="link" href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <span class="link__icon" aria-hidden="true">💼</span>
+            <span class="link__label">LinkedIn</span>
+            <span class="link__hint">Aari Realty</span>
+          </a>
+        </li>
+        <li>
+          <a class="link" href="https://tiktok.com/" target="_blank" rel="noopener noreferrer">
+            <span class="link__icon" aria-hidden="true">🎵</span>
+            <span class="link__label">TikTok</span>
+            <span class="link__hint">@aarirealty</span>
+          </a>
+        </li>
+        <li>
+          <a class="link" href="https://youtube.com/" target="_blank" rel="noopener noreferrer">
+            <span class="link__icon" aria-hidden="true">▶️</span>
+            <span class="link__label">YouTube</span>
+            <span class="link__hint">Home tours & tips</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Resources -->
+    <section class="section" aria-labelledby="resources-heading">
+      <h2 id="resources-heading" class="section__heading">Resources</h2>
+      <ul class="links">
+        <li>
+          <a class="link" href="#buyers-guide">
+            <span class="link__icon" aria-hidden="true">📘</span>
+            <span class="link__label">First-Time Buyer's Guide</span>
+            <span class="link__hint">PDF</span>
+          </a>
+        </li>
+        <li>
+          <a class="link" href="#listings">
+            <span class="link__icon" aria-hidden="true">🏡</span>
+            <span class="link__label">Current Listings</span>
+            <span class="link__hint">View homes</span>
+          </a>
+        </li>
+        <li>
+          <a class="link" href="#market-report">
+            <span class="link__icon" aria-hidden="true">📊</span>
+            <span class="link__label">Monthly Market Report</span>
+            <span class="link__hint">Subscribe</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Aari Realty. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
